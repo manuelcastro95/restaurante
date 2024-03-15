@@ -1,0 +1,68 @@
+[
+  {
+    "idPedido": 1,
+    "idUsuario": 5,
+    "fechaPedido": "2024-03-15",
+    "estado": "listo",
+    "total": 29.97,
+    "mesa": 3,
+    "metodoPago": "tarjeta",
+    "direccionEnvio": "Calle Principal, Ciudad",
+    "detallesPedido": [
+      {
+        "idProducto": 9,
+        "nombre": "Parrillada Mixta",
+        "cantidad": 1,
+        "precioUnitario": 24.99
+      },
+      {
+        "idProducto": 27,
+        "nombre": "Ensalada de Frutas",
+        "cantidad": 1,
+        "precioUnitario": 5.50
+      }
+    ]
+  },
+  {
+    "idPedido": 2,
+    "idUsuario": 8,
+    "fechaPedido": "2024-03-16",
+    "estado": "procesando",
+    "total": 21.48,
+    "mesa": 4,
+    "metodoPago": "efectivo",
+    "direccionEnvio": "Avenida Central, Ciudad",
+    "detallesPedido": [
+      {
+        "idProducto": 2,
+        "nombre": "Pizza Pepperoni",
+        "cantidad": 2,
+        "precioUnitario": 10.99
+      }
+    ]
+  },
+  {
+    "idPedido": 3,
+    "idUsuario": 5,
+    "fechaPedido": "2024-03-17",
+    "estado": "procesando",
+    "total": 15.50,
+    "mesa": 7,
+    "metodoPago": "efectivo",
+    "direccionEnvio": "Calle Principal, Ciudad",
+    "detallesPedido": [
+      {
+        "idProducto": 7,
+        "nombre": "Tacos de Carne Asada",
+        "cantidad": 1,
+        "precioUnitario": 7.99
+      },
+      {
+        "idProducto": 5,
+        "nombre": "Sushi Variado",
+        "cantidad": 1,
+        "precioUnitario": 12.99
+      }
+    ]
+  }
+]

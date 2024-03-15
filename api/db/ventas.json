@@ -1,0 +1,23 @@
+[
+  {
+    "idVenta": 1,
+    "idPedido": 1,
+    "fechaVenta": "2024-03-15",
+    "total": 29.97,
+    "metodoPago": "tarjeta"
+  },
+  {
+    "idVenta": 2,
+    "idPedido": 2,
+    "fechaVenta": "2024-03-16",
+    "total": 21.48,
+    "metodoPago": "efectivo"
+  },
+  {
+    "idVenta": 3,
+    "idPedido": 3,
+    "fechaVenta": "2024-03-17",
+    "total": 15.50,
+    "metodoPago": "efectivo"
+  }
+]

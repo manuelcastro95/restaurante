@@ -1,12 +1,81 @@
 const fs = require('fs/promises');
 const path = require('path');
+const rutaArchivo = path.join(__dirname, '../db/users.json');
 
-const listarUsuarios = async (req, res) => {
-    res.json({
-      users: 'listado de Users'
-    });
+let users = [];
+
+async function cargarUsuarios() {
+  try {
+    const contenido = await fs.readFile(rutaArchivo, 'utf-8');
+    users = JSON.parse(contenido);
+  } catch (error) {
+  }
+}
+
+cargarUsuarios();
+
+
+const listarUsuarios = async (req,res) => {
+  res.json(users);
+}
+
+
+const getUser = async (req, res) => {
+  const { id } = req.params;
+  const user = buscarUser(parseInt(id));
+  if (user) {
+    res.json(user);
+  } else {
+    res.json({ mensaje: 'Usuario no encontrado' });
+  }
+}
+
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const datosActualizados = req.body;
+  const indiceUser = buscarUserIndex(parseInt(id));
+  if (indiceUser !== -1) {
+    productos[indiceUser] = { ...productos[indiceUser], ...datosActualizados };
+    await guardarUser();
+    res.json({ mensaje: 'Usuario actualizado exitosamente' });
+  } else {
+    res.json({ mensaje: 'Usuario no encontrado' });
+  }
+}
+
+
+const updateStatus = async (req, res) => {
+  const { id } = req.params;
+  const estado = req.body;
+  const indiceUser = buscarUserIndex(parseInt(id));
+  if (indiceUser !== -1) {
+    users[indiceUser] = { ...users[indiceUser], ...estado };
+    await guardarUser();
+    res.json({ mensaje: 'Usuario actualizado exitosamente' });
+  } else {
+    res.json({ mensaje: 'Usuario no encontrado' });
+  }
+}
+
+const buscarUser = (id) => {
+  return users.find(user => user.idProducto === id);
+}
+
+const buscarUserIndex = (id) => {
+  return users.findIndex(user => user.idProducto === id);
+}
+const guardarUser = async () => {
+  try {
+    await fs.writeFile(rutaArchivo, JSON.stringify(users, null, 4), 'utf-8');
+    console.log('Productos guardados exitosamente.');
+  } catch (error) {
+    console.error('Error al guardar los users:', error);
+  }
 }
 
 module.exports = {
-  listarUsuarios
+  listarUsuarios,
+  getUser,
+  updateUser,
+  updateStatus
 }

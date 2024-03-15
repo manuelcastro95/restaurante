@@ -1,0 +1,302 @@
+[
+    {
+        "idProducto": 1,
+        "nombre": "Hamburguesa Clásica editado #2",
+        "descripcion": "Deliciosa hamburguesa con carne de res, lechuga, tomate y queso cheddar",
+        "precio": 8.99,
+        "imagen": "hamburguesa_clasica.jpg",
+        "categoria": "Comida rápida",
+        "stock": 20,
+        "estado": true
+    },
+    {
+        "idProducto": 2,
+        "nombre": "Pizza Pepperoni",
+        "descripcion": "Pizza de pepperoni con salsa de tomate y queso mozzarella",
+        "precio": 10.99,
+        "imagen": "pizza_pepperoni.jpg",
+        "categoria": "Comida rápida",
+        "stock": 15,
+        "estado": true
+    },
+    {
+        "idProducto": 3,
+        "nombre": "Sándwich de Pollo",
+        "descripcion": "Sándwich de pollo a la parrilla con lechuga, tomate y mayonesa",
+        "precio": 6.99,
+        "imagen": "sandwich_pollo.jpg",
+        "categoria": "Comida rápida",
+        "stock": 25,
+        "estado": true
+    },
+    {
+        "idProducto": 4,
+        "nombre": "Ensalada César",
+        "descripcion": "Ensalada fresca con lechuga, pollo a la parrilla, crutones y aderezo César",
+        "precio": 7.5,
+        "imagen": "ensalada_cesar.jpg",
+        "categoria": "Ensaladas",
+        "stock": 18,
+        "estado": true
+    },
+    {
+        "idProducto": 5,
+        "nombre": "Sushi Variado",
+        "descripcion": "Selección de sushi variado: nigiri, maki y sashimi",
+        "precio": 12.99,
+        "imagen": "sushi_variado.jpg",
+        "categoria": "Comida japonesa",
+        "stock": 10,
+        "estado": true
+    },
+    {
+        "idProducto": 6,
+        "nombre": "Pasta Carbonara",
+        "descripcion": "Pasta espagueti con salsa carbonara, panceta y queso parmesano",
+        "precio": 9.99,
+        "imagen": "pasta_carbonara.jpg",
+        "categoria": "Pastas",
+        "stock": 22,
+        "estado": true
+    },
+    {
+        "idProducto": 7,
+        "nombre": "Tacos de Carne Asada",
+        "descripcion": "Tacos mexicanos de carne asada con cebolla y cilantro",
+        "precio": 7.99,
+        "imagen": "tacos_carne_asada.jpg",
+        "categoria": "Comida mexicana",
+        "stock": 30,
+        "estado": true
+    },
+    {
+        "idProducto": 8,
+        "nombre": "Burrito Vegetariano",
+        "descripcion": "Burrito mexicano con arroz, frijoles, verduras y salsa",
+        "precio": 6.5,
+        "imagen": "burrito_vegetariano.jpg",
+        "categoria": "Comida mexicana",
+        "stock": 20,
+        "estado": true
+    },
+    {
+        "idProducto": 9,
+        "nombre": "Parrillada Mixta",
+        "descripcion": "Selección de carnes a la parrilla: pollo, res y cerdo",
+        "precio": 24.99,
+        "imagen": "parrillada_mixta.jpg",
+        "categoria": "Parrilladas",
+        "stock": 12,
+        "estado": true
+    },
+    {
+        "idProducto": 10,
+        "nombre": "Sopa de Tomate",
+        "descripcion": "Sopa caliente de tomate con albahaca y crutones",
+        "precio": 5.99,
+        "imagen": "sopa_tomate.jpg",
+        "categoria": "Sopas",
+        "stock": 15,
+        "estado": true
+    },
+    {
+        "idProducto": 11,
+        "nombre": "Ramen de Pollo",
+        "descripcion": "Ramen japonés con caldo de pollo, fideos, huevo y cebolla verde",
+        "precio": 8.5,
+        "imagen": "ramen_pollo.jpg",
+        "categoria": "Comida japonesa",
+        "stock": 18,
+        "estado": true
+    },
+    {
+        "idProducto": 12,
+        "nombre": "Parrillada de Mariscos",
+        "descripcion": "Selección de mariscos a la parrilla: camarones, pulpo y pescado",
+        "precio": 29.99,
+        "imagen": "parrillada_mariscos.jpg",
+        "categoria": "Parrilladas",
+        "stock": 10,
+        "estado": true
+    },
+    {
+        "idProducto": 13,
+        "nombre": "Empanadas de Carne",
+        "descripcion": "Empanadas argentinas de carne con cebolla y huevo",
+        "precio": 7.99,
+        "imagen": "empanadas_carne.jpg",
+        "categoria": "Comida latina",
+        "stock": 25,
+        "estado": true
+    },
+    {
+        "idProducto": 14,
+        "nombre": "Pescado a la Parrilla",
+        "descripcion": "Filete de pescado a la parrilla con limón y perejil",
+        "precio": 11.5,
+        "imagen": "pescado_parrilla.jpg",
+        "categoria": "Pescados",
+        "stock": 20,
+        "estado": true
+    },
+    {
+        "idProducto": 15,
+        "nombre": "Tarta de Queso",
+        "descripcion": "Deliciosa tarta de queso horneada con mermelada de frutos rojos",
+        "precio": 6.99,
+        "imagen": "tarta_queso.jpg",
+        "categoria": "Postres",
+        "stock": 20,
+        "estado": true
+    },
+    {
+        "idProducto": 16,
+        "nombre": "Ceviche Peruano",
+        "descripcion": "Ceviche de pescado peruano con limón, cebolla y ají",
+        "precio": 13.99,
+        "imagen": "ceviche_peruano.jpg",
+        "categoria": "Comida latina",
+        "stock": 15,
+        "estado": true
+    },
+    {
+        "idProducto": 17,
+        "nombre": "Tacos de Pescado",
+        "descripcion": "Tacos mexicanos de pescado frito con salsa de chipotle",
+        "precio": 9.5,
+        "imagen": "tacos_pescado.jpg",
+        "categoria": "Comida mexicana",
+        "stock": 20,
+        "estado": true
+    },
+    {
+        "idProducto": 18,
+        "nombre": "Paella Marinera",
+        "descripcion": "Paella española con arroz, mariscos y vegetales",
+        "precio": 18.99,
+        "imagen": "paella_marinera.jpg",
+        "categoria": "Platos españoles",
+        "stock": 12,
+        "estado": true
+    },
+    {
+        "idProducto": 19,
+        "nombre": "Sushi Tempura Roll",
+        "descripcion": "Maki roll con langostino tempura, aguacate y salsa de anguila",
+        "precio": 11.99,
+        "imagen": "sushi_tempura_roll.jpg",
+        "categoria": "Comida japonesa",
+        "stock": 18,
+        "estado": true
+    },
+    {
+        "idProducto": 20,
+        "nombre": "Fajitas de Pollo",
+        "descripcion": "Fajitas mexicanas con pollo, pimientos y cebolla",
+        "precio": 10.99,
+        "imagen": "fajitas_pollo.jpg",
+        "categoria": "Comida mexicana",
+        "stock": 20,
+        "estado": true
+    },
+    {
+        "idProducto": 21,
+        "nombre": "Raviolis de Queso",
+        "descripcion": "Raviolis rellenos de queso ricotta con salsa de tomate",
+        "precio": 9.5,
+        "imagen": "raviolis_queso.jpg",
+        "categoria": "Pastas",
+        "stock": 25,
+        "estado": true
+    },
+    {
+        "idProducto": 22,
+        "nombre": "Ceviche de Camarón",
+        "descripcion": "Ceviche ecuatoriano de camarón con limón, tomate y cilantro",
+        "precio": 14.5,
+        "imagen": "ceviche_camarón.jpg",
+        "categoria": "Comida latina",
+        "stock": 15,
+        "estado": true
+    },
+    {
+        "idProducto": 23,
+        "nombre": "Pollo al Horno",
+        "descripcion": "Muslos de pollo al horno con papas y zanahorias",
+        "precio": 12.99,
+        "imagen": "pollo_horno.jpg",
+        "categoria": "Pollo",
+        "stock": 20,
+        "estado": true
+    },
+    {
+        "idProducto": 24,
+        "nombre": "Lasagna de Carne",
+        "descripcion": "Lasagna italiana con carne molida, salsa de tomate y queso parmesano",
+        "precio": 11.99,
+        "imagen": "lasagna_carne.jpg",
+        "categoria": "Pastas",
+        "stock": 18,
+        "estado": true
+    },
+    {
+        "idProducto": 25,
+        "nombre": "Helado de Vainilla",
+        "descripcion": "Helado cremoso de vainilla con trozos de chocolate",
+        "precio": 4.99,
+        "imagen": "helado_vainilla.jpg",
+        "categoria": "Helados",
+        "stock": 30,
+        "estado": true
+    },
+    {
+        "idProducto": 26,
+        "nombre": "Papas Fritas",
+        "descripcion": "Papas fritas crujientes con salsa kétchup",
+        "precio": 3.5,
+        "imagen": "papas_fritas.jpg",
+        "categoria": "Acompañamientos",
+        "stock": 25,
+        "estado": true
+    },
+    {
+        "idProducto": 27,
+        "nombre": "Ensalada de Frutas",
+        "descripcion": "Ensalada fresca de frutas tropicales con miel y limón",
+        "precio": 5.5,
+        "imagen": "ensalada_frutas.jpg",
+        "categoria": "Ensaladas",
+        "stock": 20,
+        "estado": true
+    },
+    {
+        "idProducto": 28,
+        "nombre": "Mousse de Chocolate",
+        "descripcion": "Mousse de chocolate cremoso con crema batida",
+        "precio": 6.99,
+        "imagen": "mousse_chocolate.jpg",
+        "categoria": "Postres",
+        "stock": 15,
+        "estado": true
+    },
+    {
+        "idProducto": 29,
+        "nombre": "Tacos de Barbacoa",
+        "descripcion": "Tacos mexicanos de barbacoa con cebolla y cilantro",
+        "precio": 8.99,
+        "imagen": "tacos_barbacoa.jpg",
+        "categoria": "Comida mexicana",
+        "stock": 20,
+        "estado": true
+    },
+    {
+        "idProducto": 30,
+        "nombre": "Salmon al Grill",
+        "descripcion": "Filete de salmón a la parrilla con limón y eneldo",
+        "precio": 14.99,
+        "imagen": "salmon_grill.jpg",
+        "categoria": "Pescados",
+        "stock": 15,
+        "estado": true
+    }
+]
