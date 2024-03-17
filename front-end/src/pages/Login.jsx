@@ -6,31 +6,43 @@ import { useState } from 'react';
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login({ callback }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const url = 'http://localhost:3005/v1/restaurante/auth/login';
-  // const goTo = useNavigate();
+  const goTo = useNavigate();
 
   const ingresar = e => {
     e.preventDefault();
-    
+
     fetch(url, {
-      'method': 'POST', 
-      'body': JSON.stringify({email:email,password:password}),
+      'method': 'POST',
+      'body': JSON.stringify({ email: email, password: password }),
       'headers': {
-      'Content-Type': 'application/json'
-    }})
-    .then((res) => res.json())
-    .catch((error) => console.error('Error:', error))
-    .then(res => {
-      Swal.fire({
-        title: 'Bienvenido!',
-        text: `${res.nombre} ${res.apellido}`,
-        icon: 'success',
-        confirmButtonText: 'Cerrar'
-      })
-    });
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error('Error:', error))
+      .then(res => {
+        Swal.fire({
+          title: 'Bienvenido!',
+          text: `${res.nombre} ${res.apellido}`,
+          icon: 'success',
+          confirmButtonText: 'Cerrar'
+        })
+
+        if (res.rol == "administrador") {
+          callback("administrador");
+          goTo("/administrador");
+        } else if (res.rol == "mesero") {
+          callback("mesero");
+          goTo("/mesero");
+        } else if (res.rol == "cocina") {
+          callback("cocina");
+          goTo("/cocina");
+        }
+      });
   }
 
   return (
