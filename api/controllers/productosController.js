@@ -19,6 +19,20 @@ const getProductos = async (req, res) => {
   res.json({ productos });
 }
 
+const storeProducto = async (req, res) => {
+  const nuevoProducto = req.body;
+  let ultimoId = 0;
+  if (productos.length > 0) {
+    const ultimoProducto = productos[productos.length - 1];
+    ultimoId = ultimoProducto.idProducto;
+  }
+  nuevoProducto.idProducto = ultimoId + 1
+  productos.push(nuevoProducto);
+  await guardarProductos();
+  res.json({ mensaje: 'Producto insertado exitosamente'});
+}
+
+
 const getProducto = async (req, res) => {
   const { id } = req.params;
   const producto = buscarProducto(parseInt(id));
@@ -64,7 +78,7 @@ const buscarProductoIndex = (id) => {
 }
 const guardarProductos = async () => {
   try {
-    await fs.writeFile(rutaArchivo, JSON.stringify(productos, null, 4), 'utf-8');
+    await fs.writeFile(rutaArchivo, JSON.stringify(productos, null, 2), 'utf-8');
     console.log('Productos guardados exitosamente.');
   } catch (error) {
     console.error('Error al guardar los productos:', error);
@@ -73,6 +87,7 @@ const guardarProductos = async () => {
 
 module.exports = {
   getProductos,
+  storeProducto,
   getProducto,
   updateProducto,
   updateStatus

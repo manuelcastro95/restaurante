@@ -20,6 +20,19 @@ const listarUsuarios = async (req,res) => {
 }
 
 
+const storeUser = async (req, res) => {
+  const nuevoUser = req.body;
+  let ultimoId = 0;
+  if (users.length > 0) {
+    const ultimoUser = users[users.length - 1];
+    ultimoId = ultimoUser.idUsuario;
+  }
+  nuevoUser.idUsuario = ultimoId + 1
+  users.push(nuevoUser);
+  await guardarUser();
+  res.json({ mensaje: 'Usuario insertado exitosamente'});
+}
+
 const getUser = async (req, res) => {
   const { id } = req.params;
   const user = buscarUser(parseInt(id));
@@ -75,6 +88,7 @@ const guardarUser = async () => {
 
 module.exports = {
   listarUsuarios,
+  storeUser,
   getUser,
   updateUser,
   updateStatus
