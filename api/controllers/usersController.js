@@ -71,11 +71,11 @@ const updateStatus = async (req, res) => {
 }
 
 const buscarUser = (id) => {
-  return users.find(user => user.idProducto === id);
+  return users.find(user => user.idUsuario == id);
 }
 
 const buscarUserIndex = (id) => {
-  return users.findIndex(user => user.idProducto === id);
+  return users.findIndex(user => user.idUsuario == id);
 }
 const guardarUser = async () => {
   try {
