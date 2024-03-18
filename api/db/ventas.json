@@ -19,5 +19,12 @@
     "fechaVenta": "2024-03-17",
     "total": 15.50,
     "metodoPago": "efectivo"
+  },
+  {
+    "idVenta": 4,
+    "idPedido": 3,
+    "fechaVenta": "2024-03-22",
+    "total": 56.26,
+    "metodoPago": "efectivo"
   }
 ]
