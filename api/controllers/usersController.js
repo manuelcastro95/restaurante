@@ -48,7 +48,7 @@ const updateUser = async (req, res) => {
   const datosActualizados = req.body;
   const indiceUser = buscarUserIndex(parseInt(id));
   if (indiceUser !== -1) {
-    productos[indiceUser] = { ...productos[indiceUser], ...datosActualizados };
+    users[indiceUser] = { ...users[indiceUser], ...datosActualizados };
     await guardarUser();
     res.json({ mensaje: 'Usuario actualizado exitosamente' });
   } else {
@@ -79,7 +79,7 @@ const buscarUserIndex = (id) => {
 }
 const guardarUser = async () => {
   try {
-    await fs.writeFile(rutaArchivo, JSON.stringify(users, null, 4), 'utf-8');
+    await fs.writeFile(rutaArchivo, JSON.stringify(users, null, 2), 'utf-8');
     console.log('Productos guardados exitosamente.');
   } catch (error) {
     console.error('Error al guardar los users:', error);

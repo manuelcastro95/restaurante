@@ -3,12 +3,21 @@ import React, { userState, useEffect, useState } from "react";
 import Input from "../components/Input"
 import Label from '../components/Label'
 import Button from '../components/Button'
+import Swal from 'sweetalert2'
 
 const Usuarios = () => {
     const [users, setUsers] = useState([])
     const [user, setUser] = useState([])
     const [titulo, setTitulo] = useState('Agregar Usuario')
     const [textButton, setTextButton] = useState('Agregar')
+    
+    const [nombres, setNombres] = useState('')
+    const [apellidos, setApellidos] = useState('')
+    const [rol, setRol] = useState('')
+    const [email, setEmail] = useState('')
+    const [contraseña, setContraseña] = useState('')
+    const [accion, setAccion] = useState('crear')
+    
 
     const url = 'http://localhost:3005/v1/restaurante/users';
 
@@ -23,11 +32,68 @@ const Usuarios = () => {
         const data = await fetch(`${url}/${id}`)
             .then(res => res.json())
             .then(data => data)
+
         setUser(data)
         setTitulo('Actualizar información Usuario')
         setTextButton('Actualizar')
-        console.log(user)
+        setNombres(data.nombre)
+        setApellidos(data.apellido)
+        setRol(data.rol)
+        setEmail(data.email)
+        setContraseña(data.password)
+        setAccion('actualizar')
+    }
 
+    const enviarDatos = async (e) => {
+        e.preventDefault();
+        let url_post = ''
+        let method = 'POST'
+
+        if(accion == 'crear'){
+            url_post = `${url}/store`
+        }else if(accion == 'actualizar'){
+            url_post = `${url}/editar/${user.idUsuario}`
+            method = 'PUT'
+        }
+
+        let datos = {
+            nombre : nombres,
+            apellido : apellidos,
+            rol : rol,
+            email : email,
+            contraseña : contraseña,
+            estado: true
+        }
+
+        fetch(url_post, {
+            'method': method, 
+            'body': JSON.stringify(datos),
+            'headers': {
+            'Content-Type': 'application/json'
+        }})
+        .then((res) => res.json())
+        .catch((error) => console.error('Error:', error))
+        .then((response) => {
+            cargar_users()
+            Swal.fire({
+                title: '',
+                text: `${response.mensaje}`,
+                icon: 'success',
+                confirmButtonText: 'Cerrar'
+            })
+            limpiar_campos();
+        });
+    }
+
+    const limpiar_campos = () => { 
+        setTitulo('Agregar Usuario')
+        setTextButton('Agregar')
+        setNombres('')
+        setApellidos('')
+        setRol('')
+        setEmail('')
+        setContraseña('')
+        setAccion('crear')
     }
 
     useEffect(() => {
@@ -78,7 +144,7 @@ const Usuarios = () => {
                 <div>
                     <div className="w-full max-w-xl max-h-xl mx-auto">
                         
-                        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                        <form onSubmit={enviarDatos} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                             <div className="mb-3">
                                 <h2 className="block text-xl font-si leading-6 text-gray-900">{titulo}</h2>
                             </div>
@@ -86,56 +152,71 @@ const Usuarios = () => {
                             <div className="mb-4">
                                 <Label> Nombres  </Label>
                                 <Input
+                                    value={nombres}
                                     type="text"
-                                    id="nombre"
+                                    id="nombres"
                                     name="name"
-                                    required
+                                    onChange={(e) => setNombres(e.target.value)}
                                 />
                             </div>
                             <div className="mb-6">
                                 <Label> Apellidos </Label>
                                 <Input
+                                    value={apellidos}
                                     type="text"
-                                    id="email"
-                                    name="name"
-                                    required
+                                    id="apellidos"
+                                    name="apellidos"
+                                    onChange={(e) => setApellidos(e.target.value)} 
                                 />
                             </div>
                             <div className="mb-6">
                                 <Label> Rol </Label>
                                 <Input
+                                    value={rol}
                                     type="text"
-                                    id="email"
-                                    name="name"
-                                    required
+                                    id="rol"
+                                    name="rol"
+                                    
+                                    onChange={(e) => setRol(e.target.value)} 
                                 />
                             </div>
                             <div className="mb-6">
                                 <Label> Email </Label>
                                 <Input
+                                    value={email}
                                     type="text"
                                     id="email"
-                                    name="name"
-                                    required
+                                    name="email"
+                                    
+                                    onChange={(e) => setEmail(e.target.value)} 
                                 />
                             </div>
                             <div className="mb-6">
                                 <Label> Contraseña </Label>
                                 <Input
+                                    value={contraseña}
                                     type="text"
-                                    id="email"
-                                    name="name"
-                                    required
+                                    id="contraseña"
+                                    name="contraseña"
+                                    
+                                    onChange={(e) => setContraseña(e.target.value)} 
                                 />
                             </div>
                             <div className="flex items-center justify-between">
-                            <Button
-                                type="button"
-                            >
-                                {textButton}
-                            </Button>
+                                <Button type="submit" >
+                                    {textButton}
+                                </Button>
                             </div>
                         </form>
+                        <div className="flex items-center justify-between">
+                            <button 
+                                type="button" 
+                                onClick={limpiar_campos}
+                                className="flex w-full justify-center rounded-md bg-slate-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                Limpiar Campos
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
