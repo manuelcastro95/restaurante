@@ -1,9 +1,9 @@
 [
   {
     "idUsuario": 1,
-    "nombre": "Manuel",
-    "apellido": "Castro",
-    "email": "manuelcastro911@gmail.com",
+    "nombre": "Manuel Castro",
+    "apellido": "Minotta",
+    "email": "admin@example.com",
     "telefono": "123456789",
     "password": "admin123",
     "rol": "administrador",
@@ -116,5 +116,14 @@
     "contraseña": "12345566",
     "estado": true,
     "idUsuario": 11
+  },
+  {
+    "nombre": "pedro",
+    "apellido": "peasdsa1",
+    "rol": "administrador",
+    "email": "asdas",
+    "contraseña": "12312",
+    "estado": true,
+    "idUsuario": 12
   }
 ]
