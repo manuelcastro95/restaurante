@@ -17,7 +17,7 @@ const Usuarios = () => {
     const [email, setEmail] = useState('')
     const [contraseña, setContraseña] = useState('')
     const [accion, setAccion] = useState('crear')
-    
+    const [estado, setEstado] = useState('text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900')
 
     const url = 'http://localhost:3005/v1/restaurante/users';
 
@@ -28,8 +28,8 @@ const Usuarios = () => {
         setUsers(data)
     }
 
-    const update_user = async id => {
-        const data = await fetch(`${url}/${id}`)
+    const update_user = async idUsuario => {
+        const data = await fetch(`${url}/${idUsuario}`)
             .then(res => res.json())
             .then(data => data)
 
@@ -52,7 +52,7 @@ const Usuarios = () => {
         if(accion == 'crear'){
             url_post = `${url}/store`
         }else if(accion == 'actualizar'){
-            url_post = `${url}/editar/${user.idUsuario}`
+            url_post = `${url}/editar/${user.id}`
             method = 'PUT'
         }
 
@@ -61,7 +61,7 @@ const Usuarios = () => {
             apellido : apellidos,
             rol : rol,
             email : email,
-            contraseña : contraseña,
+            password : contraseña,
             estado: true
         }
 
@@ -82,6 +82,28 @@ const Usuarios = () => {
                 confirmButtonText: 'Cerrar'
             })
             limpiar_campos();
+        });
+    }
+
+    const changeStatus = async (id,status) => {
+        
+        let estado = status == 1 ? 0 : 1;
+        fetch(`${url}/update-status/${id}`, {
+            'method': 'PUT', 
+            'body': JSON.stringify({estado: estado}),
+            'headers': {
+            'Content-Type': 'application/json'
+        }})
+        .then((res) => res.json())
+        .catch((error) => console.error('Error:', error))
+        .then((response) => {
+            cargar_users()
+            Swal.fire({
+                title: '',
+                text: `${response.mensaje}`,
+                icon: 'success',
+                confirmButtonText: 'Cerrar'
+            })
         });
     }
 
@@ -119,20 +141,33 @@ const Usuarios = () => {
                                     </tr>
                                 </thead>
                                 <tbody className="text-blue-gray-900">
-                                    {users.map((user) =>
-                                        <tr key={user.idUsuario} className="border-b border-blue-gray-200">
+                                    {users.map((user,i) =>
+                                        <tr key={i} className="border-b border-blue-gray-200">
                                             <td className="py-3 px-4">{user.nombre}  {user.apellido}</td>
                                             <td className="py-3 px-4">{user.email}</td>
                                             <td className="py-3 px-4">{user.rol}</td>
-                                            <td className="py-3 px-4">{user.estado ? 'activo' : 'inactivo'}</td>
+                                            <td className="py-3 px-4">
+                                                {user.estado == 1 ? 'activo' : 'inactivo'}
+                                            </td>
                                             <td className="py-3 px-4">
                                                 <button
+                                                    title="editar usuario"
                                                     type="button"
-                                                    onClick={() => update_user(user.idUsuario)}
-                                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                                    onClick={() => update_user(user.id)}
+                                                    className="text-blue-500 hover:text-white border border-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-500"
                                                 >
-                                                    editar
+                                                    <i className="fa-solid fa-user-pen"></i>
                                                 </button>
+                                                <button 
+                                                    type="button" 
+                                                    className={estado}
+                                                    onClick={() => changeStatus(user.id,user.estado)}
+                                                    title={user.estado == 1 ? 'inactivar' : 'activar'}
+                                                >
+
+                                                    <i className="fa-solid fa-user-lock"></i>
+                                                </button>
+
                                             </td>
                                         </tr>
                                     )}
