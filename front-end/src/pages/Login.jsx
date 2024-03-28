@@ -25,21 +25,16 @@ function Login({ callback }) {
       .then((res) => res.json())
       .catch((error) => console.error('Error:', error))
       .then(res => {
-        Swal.fire({
-          title: 'Bienvenido!',
-          text: `${res.nombre} ${res.apellido}`,
-          icon: 'success',
-          confirmButtonText: 'Cerrar'
-        })
+        
 
         if (res.rol == "administrador") {
-          callback("administrador");
+          callback(res);
           goTo("/administrador");
         } else if (res.rol == "mesero") {
-          callback("mesero");
+          callback(res);
           goTo("/mesero");
         } else if (res.rol == "cocina") {
-          callback("cocina");
+          callback(res);
           goTo("/cocina");
         }
       });

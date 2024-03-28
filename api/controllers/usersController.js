@@ -16,7 +16,7 @@ cargarUsuarios();
 
 
 const listarUsuarios = async (req, res) => {
-  res.json(users);
+  res.json(users.filter(user => user.estado));
 }
 
 

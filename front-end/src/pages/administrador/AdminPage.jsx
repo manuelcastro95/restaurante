@@ -4,7 +4,7 @@ import React, { userState, useEffect, useState } from "react";
 import 'styled-components'
 
 const AdminPage = ({ user }) => {
-    if (user != "administrador" || !user) {
+    if (user.rol != "administrador" || !user.rol) {
         return <Navigate to="/" />
     }
     const url = 'http://localhost:3005/v1/restaurante/ventas';
@@ -41,14 +41,6 @@ const AdminPage = ({ user }) => {
                             <div className="font-bold text-xl mb-2 text-center">Productos</div>
                             <p className="text-gray-700 text-base text-center">
                             <Link to="/productos">8</Link>
-                            </p>
-                        </div>
-                    </div>
-                    <div className="max-w-sm rounded overflow-hidden shadow-lg ">
-                        <div className="px-6 py-4">
-                            <div className="font-bold text-xl mb-2 text-center">Pedidos</div>
-                            <p className="text-gray-700 text-base text-center">
-                                1<Link to="/pedidos">8</Link>
                             </p>
                         </div>
                     </div>

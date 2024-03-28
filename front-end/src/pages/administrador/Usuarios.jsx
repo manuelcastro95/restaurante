@@ -1,8 +1,8 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import React, { userState, useEffect, useState } from "react";
-import Input from "../components/Input"
-import Label from '../components/Label'
-import Button from '../components/Button'
+import Input from "../../components/Input"
+import Label from '../../components/Label'
+import Button from '../../components/Button'
 import Swal from 'sweetalert2'
 
 const Usuarios = () => {
@@ -17,7 +17,7 @@ const Usuarios = () => {
     const [email, setEmail] = useState('')
     const [contraseña, setContraseña] = useState('')
     const [accion, setAccion] = useState('crear')
-    const [estado, setEstado] = useState('text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900')
+    const [estado, setEstado] = useState('text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900')
 
     const url = 'http://localhost:3005/v1/restaurante/users';
 
@@ -154,7 +154,7 @@ const Usuarios = () => {
                                                     title="editar usuario"
                                                     type="button"
                                                     onClick={() => update_user(user.id)}
-                                                    className="text-blue-500 hover:text-white border border-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-500"
+                                                    className="text-blue-500 hover:text-white border border-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2  dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-500"
                                                 >
                                                     <i className="fa-solid fa-user-pen"></i>
                                                 </button>
@@ -251,6 +251,15 @@ const Usuarios = () => {
                             >
                                 Limpiar Campos
                             </button>
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <Link 
+                                to='/administrador'
+                                type="button"
+                                className="mt-3 flex w-full justify-center rounded-md bg-slate-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                Regresar
+                            </Link>
                         </div>
                     </div>
                 </div>

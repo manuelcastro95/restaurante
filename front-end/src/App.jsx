@@ -1,12 +1,14 @@
-import Login from './pages/Login';
-import AdminPage from './pages/AdminPage';
-import CocinaPage from './pages/CocinaPage';
-import MeseroPage from './pages/MeseroPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
-import Usuarios from './pages/Usuarios';
-import { Productos } from './pages/Productos';
-import { Pedidos } from './pages/Pedidos';
+
+
+import Login from './pages/Login';
+import AdminPage from './pages/administrador/AdminPage';
+import Productos from './pages/administrador/Productos';
+import Usuarios from './pages/administrador/Usuarios';
+import CocinaPage from './pages/cocina/CocinaPage';
+import MeseroPage from './pages/mesero/MeseroPage';
+import Pedidos from './pages/cocina/Pedidos';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -19,8 +21,8 @@ export default function App() {
         <Route path="/productos" element={<Productos user={user} />}></Route>
         <Route path="/pedidos" element={<Pedidos user={user} />}></Route>
 
-        <Route path="/mesero" element={<CocinaPage user={user} />}></Route>
-        <Route path="/cocina" element={<MeseroPage user={user} />}></Route>
+        <Route path="/cocina" element={<CocinaPage user={user} />}></Route>
+        <Route path="/mesero" element={<MeseroPage user={user} />}></Route>
       </Routes>
     </BrowserRouter>
   )

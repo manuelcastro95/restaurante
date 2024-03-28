@@ -16,7 +16,7 @@ async function cargarProductos() {
 cargarProductos();
 
 const getProductos = async (req, res) => {
-  res.json({ productos });
+  res.json(productos.filter(p => p.estado));
 }
 
 const storeProducto = async (req, res) => {
@@ -24,9 +24,10 @@ const storeProducto = async (req, res) => {
   let ultimoId = 0;
   if (productos.length > 0) {
     const ultimoProducto = productos[productos.length - 1];
-    ultimoId = ultimoProducto.idProducto;
+    ultimoId = ultimoProducto.id;
   }
-  nuevoProducto.idProducto = ultimoId + 1
+  nuevoProducto.id = ultimoId + 1
+  nuevoProducto.estado = 1
   productos.push(nuevoProducto);
   await guardarProductos();
   res.json({ mensaje: 'Producto insertado exitosamente'});
@@ -58,23 +59,23 @@ const updateProducto = async (req, res) => {
 
 const updateStatus = async (req, res) => {
   const { id } = req.params;
-  const estado = req.body;
+  const {estado} = req.body;
   const indiceProducto = buscarProductoIndex(parseInt(id));
   if (indiceProducto !== -1) {
-    productos[indiceProducto] = { ...productos[indiceProducto], ...estado };
+    productos[indiceProducto] = { ...productos[indiceProducto], ...{estado:estado} };
     await guardarProductos();
-    res.json({ mensaje: 'Producto actualizado exitosamente' });
+    res.json({ mensaje: 'Producto eliminado exitosamente' });
   } else {
     res.json({ mensaje: 'Producto no encontrado' });
   }
 }
 
 const buscarProducto = (id) => {
-  return productos.find(producto => producto.idProducto === id);
+  return productos.find(producto => producto.id === id);
 }
 
 const buscarProductoIndex = (id) => {
-  return productos.findIndex(producto => producto.idProducto === id);
+  return productos.findIndex(producto => producto.id === id);
 }
 const guardarProductos = async () => {
   try {
