@@ -2,7 +2,7 @@
   {
     "idUsuario": 3,
     "fechaPedido": "28/3/2024",
-    "estado": "pagado",
+    "estado": "listo",
     "total": 26.23,
     "mesa": 2,
     "detallesPedido": [
@@ -40,5 +40,65 @@
       }
     ],
     "id": 1
+  },
+  {
+    "idUsuario": 3,
+    "fechaPedido": "28/3/2024",
+    "estado": "listo",
+    "total": 26.23,
+    "mesa": 2,
+    "detallesPedido": [
+      {
+        "id": 1,
+        "nombre": "Hamburguesa Clásica editado",
+        "precio": 8.99,
+        "categoria": "Comida rápida",
+        "estado": 1,
+        "cantidad": 1
+      },
+      {
+        "id": 3,
+        "nombre": "Sándwich de Pollo",
+        "precio": 2.25,
+        "categoria": "Comida rápida",
+        "estado": 1,
+        "cantidad": 1
+      }
+    ],
+    "id": 2
+  },
+  {
+    "idUsuario": 3,
+    "fechaPedido": "29/3/2024",
+    "estado": "procesando",
+    "total": 44.93,
+    "mesa": 1,
+    "detallesPedido": [
+      {
+        "id": 1,
+        "nombre": "Hamburguesa Clásica",
+        "precio": 8.99,
+        "categoria": "Comida rápida",
+        "estado": 1,
+        "cantidad": 4
+      },
+      {
+        "nombre": "Papas a la francesa",
+        "precio": "0.99",
+        "categoria": "Comidas rapidas",
+        "id": 32,
+        "estado": 1,
+        "cantidad": 2
+      },
+      {
+        "id": 28,
+        "nombre": "Mousse de Chocolate",
+        "precio": 6.99,
+        "categoria": "Postres",
+        "estado": 1,
+        "cantidad": 1
+      }
+    ],
+    "id": 3
   }
 ]

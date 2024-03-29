@@ -4,6 +4,7 @@ import Label from '../../components/Label';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Swal from 'sweetalert2'
+import ButtonLink from '../../components/ButtonLink';
 
 const Productos = () => {
   const [productos, setProductos] = useState([])
@@ -82,22 +83,23 @@ const Productos = () => {
   const changeStatus = async (id, status) => {
     let estado = status == 1 ? 0 : 1;
     fetch(`${url_base}update-status/${id}`, {
-        'method': 'PUT', 
-        'body': JSON.stringify({estado: estado}),
-        'headers': {
+      'method': 'PUT',
+      'body': JSON.stringify({ estado: estado }),
+      'headers': {
         'Content-Type': 'application/json'
-    }})
-    .then((res) => res.json())
-    .catch((error) => console.error('Error:', error))
-    .then((response) => {
+      }
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error('Error:', error))
+      .then((response) => {
         cargar_productos()
         Swal.fire({
-            title: '',
-            text: `${response.mensaje}`,
-            icon: 'success',
-            confirmButtonText: 'Cerrar'
+          title: '',
+          text: `${response.mensaje}`,
+          icon: 'success',
+          confirmButtonText: 'Cerrar'
         })
-    });
+      });
   }
 
 
@@ -115,11 +117,22 @@ const Productos = () => {
   }, [])
 
   return (
-    <div className="grid grid-cols-1 gap-2 max-w-7xl rounded overflow-hidden shadow-lg ml-5 mt-4">
+    <div className="max-w-7xl rounded overflow-hidden shadow-lg mx-10 my-7">
       <h1 className="font-bold text-xl mb-2 my-3 ml-5">Productos</h1>
 
-      <div className="ml-4 grid grid-cols-3 gap-3">
-        <div className="overflow-x-auto  col-span-2 border-2 mx-auto">
+      <div className="flex justify-end px-9">
+        <ButtonLink color="slate" ruta="/administrador">
+          <i class="mr-2 fa-solid fa-angles-left"></i>
+          Regresar
+        </ButtonLink>
+        <ButtonLink color="red" ruta="/">
+          Salir
+          <i className=" ml-2 fa-solid fa-right-from-bracket"></i>
+        </ButtonLink>
+      </div>
+
+      <div className="container my-9 grid grid-cols-3 gap-auto">
+        <div className="overflow-x-auto col-span-2 mx-6">
           <div className="inline-block">
             <div className="overflow-x-auto">
               <table className="min-w-full bg-white shadow-md rounded-xl">
@@ -138,23 +151,23 @@ const Productos = () => {
                       <td className="py-3 px-4">${producto.precio}</td>
                       <td className="py-3 px-4">{producto.categoria}</td>
                       <td className="py-3 px-4">
-                        <button
-                          title="editar usuario"
+                        <Button
+                          title="editar producto"
                           type="button"
                           onClick={() => update_producto(producto.id)}
-                          className=" text-blue-500 hover:text-white border border-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-500"
+                          color="blue"
                         >
                           <i className="fa-regular fa-pen-to-square"></i>
-                        </button>
-                        <button
+                        </Button>
+                        <Button
                           type="button"
-                          className={estado}
+                          color="red"
                           onClick={() => changeStatus(producto.id, producto.estado)}
-                          title={producto.estado == 1 ? 'inactivar' : 'activar'}
+                          title="eliminar producto"
                         >
 
                           <i className="fa-regular fa-trash-can"></i>
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                   )}
@@ -163,66 +176,60 @@ const Productos = () => {
             </div>
           </div>
         </div>
-        <div>
-          <div className="w-full max-w-xl max-h-xl mx-auto">
-            <form onSubmit={enviarDatos} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-              <div className="mb-3">
-                <h2 className="block text-xl font-si leading-6 text-gray-900">{titulo}</h2>
-              </div>
-              <div className="mb-4">
-                <Label> Nombre  </Label>
-                <Input
-                  value={nombre}
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  onChange={(e) => setNombre(e.target.value)}
-                />
-              </div>
-              <div className="mb-4">
-                <Label> Precio  </Label>
-                <Input
-                  value={precio}
-                  type="text"
-                  id="precio"
-                  name="precio"
-                  onChange={(e) => setPrecio(e.target.value)}
-                />
-              </div>
-              <div className="mb-4">
-                <Label> Categoria  </Label>
-                <Input
-                  value={categoria}
-                  type="text"
-                  id="categoria"
-                  name="categoria"
-                  onChange={(e) => setCategoria(e.target.value)}
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <Button type="submit" >
-                  {textButton}
-                </Button>
-              </div>
-            </form>
-            <div className="flex items-center justify-between">
-              <button
-                type="button"
-                onClick={limpiar_campos}
-                className="flex w-full justify-center rounded-md bg-slate-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Limpiar Campos
-              </button>
+
+        <div className=" mr-5">
+          <form onSubmit={enviarDatos} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div className="mb-3">
+              <h2 className="block text-xl font-si leading-6 text-gray-900">{titulo}</h2>
+            </div>
+            <div className="mb-4">
+              <Label> Nombre  </Label>
+              <Input
+                value={nombre}
+                type="text"
+                id="nombre"
+                name="nombre"
+                onChange={(e) => setNombre(e.target.value)}
+              />
+            </div>
+            <div className="mb-4">
+              <Label> Precio  </Label>
+              <Input
+                value={precio}
+                type="text"
+                id="precio"
+                name="precio"
+                onChange={(e) => setPrecio(e.target.value)}
+              />
+            </div>
+            <div className="mb-4">
+              <Label> Categoria  </Label>
+              <Input
+                value={categoria}
+                type="text"
+                id="categoria"
+                name="categoria"
+                onChange={(e) => setCategoria(e.target.value)}
+              />
             </div>
             <div className="flex items-center justify-between">
-              <Link
-                to='/administrador'
-                type="button"
-                className="mt-3 flex w-full justify-center rounded-md bg-slate-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Regresar
-              </Link>
+              <Button type="submit" color="blue" properties="w-full" >
+                {textButton}
+                <i className="ml-2 fa-solid fa-floppy-disk"></i>
+              </Button>
             </div>
+          </form>
+
+          <div className="flex items-center justify-between">
+            <Button
+              type="button"
+              onClick={limpiar_campos}
+              color="slate"
+              properties="w-full"
+            >
+              Limpiar Campos
+              <i className="ml-2 fa-solid fa-eraser"></i>
+            </Button>
           </div>
         </div>
       </div>

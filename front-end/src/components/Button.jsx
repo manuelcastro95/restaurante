@@ -1,7 +1,7 @@
 function Button(props) {
     return (
         <button
-            className="flex w-full justify-center rounded-md bg-red-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className={`${props.properties}  text-${props.color}-500 hover:text-white border border-${props.color}-500 hover:bg-${props.color}-600 focus:ring-4 focus:outline-none focus:ring-${props.color}-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2  dark:border-${props.color}-500 dark:text-${props.color}-500 dark:hover:text-white dark:hover:bg-${props.color}-500 dark:focus:ring-${props.color}-500`}
             {...props}
         >
             {props.children}

@@ -85,8 +85,11 @@ function Login({ callback }) {
           <div>
             <Button
               type="submit"
+              color="red"
+              properties="w-full"
             >
               Ingresar
+              <i className="ml-2 fa-solid fa-user-lock"></i>
             </Button>
           </div>
         </form>

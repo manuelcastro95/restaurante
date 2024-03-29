@@ -18,6 +18,9 @@ cargarPedidos();
 const listarPedidos = async (req, res) => {
   res.json(pedidos);
 }
+const listarPedidosCocina = async (req, res) => {
+  res.json(pedidos.filter(pedido => pedido.estado == 'procesando'));
+}
 
 const storePedido = async (req, res) => {
   const nuevoPedido = req.body;
@@ -69,7 +72,8 @@ const guardarPedidos = async () => {
 }
 module.exports = {
   listarPedidos,
+  listarPedidosCocina,
   storePedido,
   getPedido,
-  updateStatus
+  updateStatus,
 }

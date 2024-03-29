@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import ModalTomarPedido from "../../components/ModalTomarPedido";
 import ModalVerPedido from "../../components/ModalVerPedido";
 import ModalCobrar from "../../components/ModalCobrar";
+import ButtonLink from "../../components/ButtonLink";
+
 
 
 const MeseroPage = ({ user }) => {
@@ -14,24 +16,24 @@ const MeseroPage = ({ user }) => {
     const [allProductos, setAllProductos] = useState([])
     const [mesaSeleccionada, setMesaSeleccionada] = useState(null)
     const [mesas, setMesas] = useState([])
-    const [pedidoSeleccionado,setPedidoSeleccionado] = useState([])
+    const [pedidoSeleccionado, setPedidoSeleccionado] = useState([])
 
     const arrayMesas = [
         { id: 1, nombre: 'Mesa #1' },
         { id: 2, nombre: 'Mesa #2' },
         { id: 3, nombre: 'Mesa #3' },
         { id: 4, nombre: 'Mesa #4' },
-        { id: 5, nombre: 'Mesa #5' },        
+        { id: 5, nombre: 'Mesa #5' },
         { id: 6, nombre: 'Mesa #6' },
         { id: 7, nombre: 'Mesa #7' },
         { id: 8, nombre: 'Mesa #8' }
     ];
 
     const optionsMetodosPago = [
-        {value:3,label:'Efectivo'},
-        {value:4,label:'Transferencia'},
-        {value:1,label:'Tarjeta credito'},
-        {value:2,label:'Tarjeta debito'},
+        { value: 3, label: 'Efectivo' },
+        { value: 4, label: 'Transferencia' },
+        { value: 1, label: 'Tarjeta credito' },
+        { value: 2, label: 'Tarjeta debito' },
     ];
 
     const cargar_productos = async () => {
@@ -77,14 +79,22 @@ const MeseroPage = ({ user }) => {
 
     useEffect(() => {
         cargarMesas()
-    },[] )
+    }, [])
     return (
-        <div className="box-border hover:box-content">
-            <div className="container mx-auto mt-10 px-4 ">
+        <div className="max-w-7xl rounded overflow-hidden shadow-lg mx-10 my-9">
+            <h1 className="font-bold text-xl mb-2 my-3 ml-5">Mesero</h1>
+            <div className="flex justify-end px-9">
+                <ButtonLink color="red" ruta="/">
+                    Salir
+                    <i className=" ml-2 fa-solid fa-right-from-bracket"></i>
+                </ButtonLink>
+            </div>
+            
+            <div className="container mx-auto mt-10 px-4 my-9 ">
                 <div className="grid md:grid-cols-4 md:gap-4 sm:grid-cols-1 sm:gap-2">
 
                     {/* Mesas */}
-                    {mesas.map((mesa,i) =>
+                    {mesas.map((mesa, i) =>
                         <div key={i} className="w-25 h-auto border bg-purple-200 rounded-md px-2 py-2 grid grid-cols-1 justify-items-center">
                             <span className="text-center font-mono text-xl mb-2">{mesa.nombre}</span>
                             <button
@@ -99,7 +109,7 @@ const MeseroPage = ({ user }) => {
                             >
                                 Ver pedido
                             </button>
-                            <button 
+                            <button
                                 className="mt-3 w-36 h-10 px-0 py-0 text-white bg-red-700 hover:bg-red-600 active:bg-red-500 focus:outline-none focus:ring-red-600 rounded-xl"
                                 onClick={() => toggleModalCobrarPedido(mesa.id)}
                             >
@@ -127,12 +137,16 @@ const MeseroPage = ({ user }) => {
                 toggleModal={toggleModalVerPedido}
             />
             <ModalCobrar
-              isOpen={modalOpenCobrar}
-              toggleModal={toggleModalCobrarPedido}
-              options={optionsMetodosPago}
-              pedidoSeleccionado={pedidoSeleccionado}
+                isOpen={modalOpenCobrar}
+                toggleModal={toggleModalCobrarPedido}
+                options={optionsMetodosPago}
+                pedidoSeleccionado={pedidoSeleccionado}
             />
         </div>
+
+
+
+
     )
 }
 

@@ -8,7 +8,7 @@
     "password": "admin123",
     "rol": "administrador",
     "fechaRegistro": "2024-03-15",
-    "estado": 1
+    "estado": 0
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "password": "juan123",
     "rol": "cliente",
     "fechaRegistro": "2024-03-15",
-    "estado": 1
+    "estado": 0
   },
   {
     "id": 3,
@@ -30,7 +30,7 @@
     "password": "maria123",
     "rol": "mesero",
     "fechaRegistro": "2024-03-15",
-    "estado": 1
+    "estado": 0
   },
   {
     "id": 4,
@@ -52,7 +52,7 @@
     "password": "ana123",
     "rol": "cliente",
     "fechaRegistro": "2024-03-15",
-    "estado": 1
+    "estado": 0
   },
   {
     "id": 6,
@@ -115,7 +115,7 @@
     "apellido": "peasdsa1",
     "rol": "administrador",
     "email": "asdas",
-    "estado": 1,
+    "estado": 0,
     "id": 12
   }
 ]

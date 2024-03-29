@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "nombre": "Hamburguesa Clásica editado",
+    "nombre": "Hamburguesa Clásica",
     "precio": 8.99,
     "categoria": "Comida rápida",
     "estado": 1
