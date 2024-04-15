@@ -134,7 +134,7 @@ const Usuarios = () => {
 
             <div className="flex justify-end px-9">
                 <ButtonLink color="slate" ruta="/administrador">
-                    <i class="mr-2 fa-solid fa-angles-left"></i>
+                    <i className="mr-2 fa-solid fa-angles-left"></i>
                     Regresar
                 </ButtonLink>
                 <ButtonLink color="red" ruta="/">

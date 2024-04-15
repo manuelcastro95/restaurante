@@ -4,5 +4,29 @@
     "total": 26.23,
     "metodoPago": 3,
     "id": 1
+  },
+  {
+    "fechaVenta": "1/4/2024",
+    "total": 26.23,
+    "metodoPago": 1,
+    "id": 2
+  },
+  {
+    "fechaVenta": "1/4/2024",
+    "total": 26.23,
+    "metodoPago": 4,
+    "id": 3
+  },
+  {
+    "fechaVenta": "1/4/2024",
+    "total": 44.93,
+    "metodoPago": 4,
+    "id": 4
+  },
+  {
+    "fechaVenta": "1/4/2024",
+    "total": 51.47,
+    "metodoPago": 4,
+    "id": 5
   }
 ]

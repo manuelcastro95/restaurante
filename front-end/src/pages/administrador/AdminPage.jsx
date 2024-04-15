@@ -62,12 +62,18 @@ const AdminPage = ({ user }) => {
                             </tr>
                         </thead>
                         <tbody className="text-blue-gray-900">
-                            {ventas.map((venta) =>
-                                <tr key={venta.idVenta} className="border-b border-blue-gray-200">
+                            {ventas.map((venta,index) =>
+                                <tr key={index} className="border-b border-blue-gray-200">
                                     <td className="py-3 px-4">{venta.idVenta}</td>
                                     <td className="py-3 px-4">{venta.fechaVenta}</td>
                                     <td className="py-3 px-4">$ {venta.total}</td>
-                                    <td className="py-3 px-4">{venta.metodoPago}</td>
+                                    <td className="py-3 px-4">
+                                        
+                                        {venta.metodoPago == 1 ? 'Tarjeta credito' : ''}
+                                        {venta.metodoPago == 2 ? 'Tarjeta debito' : ''}
+                                        {venta.metodoPago == 3 ? 'Efectivo' : ''}
+                                        {venta.metodoPago == 4 ? 'Transferencia' : ''}
+                                    </td>
                                 </tr>
                             )}
                         </tbody>

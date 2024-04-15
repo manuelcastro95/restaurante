@@ -2,6 +2,11 @@ const fs = require('fs/promises');
 const path = require('path');
 const rutaArchivo = path.join(__dirname, '../db/users.json');
 
+const User = require('../models/User');
+const mongoose = require('../db/dbmongo');
+
+
+
 let users = [];
 
 async function cargarUsuarios() {
@@ -16,7 +21,16 @@ cargarUsuarios();
 
 
 const listarUsuarios = async (req, res) => {
-  res.json(users.filter(user => user.estado));
+  try {
+    const collection = await db.getCollection('users');
+    const users = await collection.find({}).toArray();
+    res.json(users);
+  } catch (error) {
+    console.error('Error accessing the users collection:', error);
+    res.status(500).send('Server error');
+  }
+
+  // res.json(users.filter(user => user.estado));
 }
 
 
@@ -59,11 +73,11 @@ const updateUser = async (req, res) => {
 
 const updateStatus = async (req, res) => {
   const { id } = req.params;
-  const {estado} = req.body;
+  const { estado } = req.body;
 
   const indiceUser = buscarUserIndex(parseInt(id));
   if (indiceUser !== -1) {
-    users[indiceUser] = { ...users[indiceUser], ...{estado:estado} };
+    users[indiceUser] = { ...users[indiceUser], ...{ estado: estado } };
     await guardarUser();
     res.json({ mensaje: 'Usuario actualizado exitosamente' });
   } else {

@@ -20,7 +20,7 @@ const Productos = () => {
   const url_base = 'http://localhost:3005/v1/restaurante/productos/';
 
   const cargar_productos = async () => {
-    let data = await fetch(`${url_base}`)
+    let data = await fetch(`http://localhost:3005/v1/productos/`)
       .then(data => data.json())
       .then(res => res)
 
@@ -121,8 +121,8 @@ const Productos = () => {
       <h1 className="font-bold text-xl mb-2 my-3 ml-5">Productos</h1>
 
       <div className="flex justify-end px-9">
-        <ButtonLink color="slate" ruta="/administrador">
-          <i class="mr-2 fa-solid fa-angles-left"></i>
+        <ButtonLink color='slate' ruta="/administrador">
+          <i className="mr-2 fa-solid fa-angles-left"></i>
           Regresar
         </ButtonLink>
         <ButtonLink color="red" ruta="/">

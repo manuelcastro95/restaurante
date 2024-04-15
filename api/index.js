@@ -20,5 +20,5 @@ routerApi(restauranteRouter);
 app.use(prefix, restauranteRouter);
 
 app.listen(port, () => {
-    console.log(`Listening at port ${port}`);
+  console.log(`Listening at port ${port}`);
 });

@@ -2,6 +2,7 @@ const fs = require('fs/promises');
 const path = require('path');
 const rutaArchivo = path.join(__dirname, '../db/productos.json');
 
+
 let productos = [];
 
 async function cargarProductos() {

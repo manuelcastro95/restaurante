@@ -103,12 +103,12 @@ const MeseroPage = ({ user }) => {
                             >
                                 Tomar pedido
                             </button>
-                            <button
+                            {/* <button
                                 className="mt-3 w-36 h-10 px-0 py-0 text-white bg-amber-700 hover:bg-amber-600 active:bg-amber-500 focus:outline-none focus:ring-amber-600 rounded-xl"
                                 onClick={() => toggleModalVerPedido(mesa.id)}
                             >
                                 Ver pedido
-                            </button>
+                            </button> */}
                             <button
                                 className="mt-3 w-36 h-10 px-0 py-0 text-white bg-red-700 hover:bg-red-600 active:bg-red-500 focus:outline-none focus:ring-red-600 rounded-xl"
                                 onClick={() => toggleModalCobrarPedido(mesa.id)}

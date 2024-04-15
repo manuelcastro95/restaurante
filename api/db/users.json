@@ -56,14 +56,14 @@
   },
   {
     "id": 6,
-    "nombre": "andres",
+    "nombre": "andres benites",
     "apellido": "pela",
     "email": "andres@gmail.com",
     "telefono": "555-3456",
     "password": "carlos123",
     "rol": "mesero",
     "fechaRegistro": "2024-03-15",
-    "estado": 1
+    "estado": true
   },
   {
     "id": 7,
@@ -117,5 +117,14 @@
     "email": "asdas",
     "estado": 0,
     "id": 12
+  },
+  {
+    "nombre": "juan",
+    "apellido": "castro",
+    "rol": "mesero",
+    "email": "juan@gmail.com",
+    "password": "123456789",
+    "estado": true,
+    "id": 13
   }
 ]
