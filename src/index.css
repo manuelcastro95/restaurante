@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@font-face {
+    font-family: neo-sans-std-regular;
+    src: url('/fonts/neo-sans-std.otf') format('opentype');
+    font-style: normal;
+    font-weight: 300;
+  }
+
+@font-face {
+    font-family: neo-sans-std-medium;
+    src: url('/fonts/neo-sans-std-medium.otf') format('opentype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: neo-sans-std-black;
+    src: url('/fonts/neo-sans-std-black.otf') format('opentype');
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: bariol-regular;
+    src: url('/fonts/bariol_regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: bariol-italic;
+    src: url('/fonts/bariol_regular_italic-webfont.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: bariol-bold;
+    src: url('/fonts/bariol_bold-webfont.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: helvetica;
+    src: url('/fonts/Helvetica-Bold.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: poppins-bold;
+    src: url('/fonts/Poppins-Bold.otf') format('opentype');
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: poppins-light;
+    src: url('/fonts/Poppins-Light.otf') format('opentype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: nunito;
+    src: url('/fonts/Nunito-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: alphapipe;
+    src: url('/fonts/BC_Alphapipe_RB_Bold.ttf') format('truetype');
+    font-style: bold;
+}
