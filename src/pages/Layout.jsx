@@ -14,15 +14,14 @@ const Layout = ({ children, menu_active }) => {
     { icon: "fa-solid fa-clock-rotate-left", label: "Actividad reciente", ruta: "" }
   ];
 
-
-  // <i class="fa-solid fa-layer-group"></i>
   return (
     <div className="w-full h-full overflow-x-hidden font-poppins-light bg-background-light">
       <div className="flex">
         {/* Sidebar */}
         <div className={`flex-none h-screen border transition-all duration-300 w-[5rem] pr-2 hover:w-[12rem] group bg-background-light`}>
           <ul className='flex flex-col h-full text-secondary-gray'>
-            <li className="mt-5 mb-3 mx-3 text-primary-blue"> {/* Logo */}
+            {/* Logo */}
+            <li className="mt-5 mb-3 mx-3 text-primary-blue">
               <div className="flex justify-center">
                 <span className="text-xl">Logo</span>
               </div>
@@ -39,7 +38,8 @@ const Layout = ({ children, menu_active }) => {
                 </Link>
               ))}
             </div>
-            <li className="mt-3 mb-5 mx-3"> {/* Perfil */}
+            {/* Perfil */}
+            <li className="mt-3 mb-5 mx-3">
               <div className="flex justify-center">
                 <span className="text-xl text-secondary-gray">Perfil</span>
               </div>

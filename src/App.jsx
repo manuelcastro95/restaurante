@@ -8,9 +8,10 @@ import Productos from './pages/administrador/Productos';
 import Usuarios from './pages/administrador/Usuarios';
 import CocinaPage from './pages/cocina/CocinaPage';
 import MeseroPage from './pages/mesero/MeseroPage';
-import Layout from "./pages/Layout"
-import DashBoard from './pages/DashBoard';
 import Roles from './pages/administrador/Roles';
+import Categorias from './pages/administrador/Categorias';
+import DashBoard from './pages/DashBoard';
+import NoFound from './pages/NoFound';
 
 
 export default function App() {
@@ -25,8 +26,10 @@ export default function App() {
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="roles" element={<Roles />} />
           <Route path="productos" element={<Productos />} />
+          <Route path="categorias" element={<Categorias />} />
           <Route path="cocina" element={<CocinaPage />} />
           <Route path="mesero" element={<MeseroPage />} />
+          <Route path="*" element={<NoFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

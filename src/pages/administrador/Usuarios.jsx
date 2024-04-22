@@ -49,7 +49,7 @@ const Usuarios = () => {
         setTextButton('Actualizar')
         setNombres(data.nombre)
         setApellidos(data.apellido)
-        setRol(data.role_id)
+        setRol(data.role)
         setEmail(data.email)
 
         setAccion('actualizar')
@@ -171,7 +171,7 @@ const Usuarios = () => {
                                                 <tr key={i}>
                                                     <td className="border-b p-2">{user.nombre}  {user.apellido}</td>
                                                     <td className="border-b p-2">{user.email}</td>
-                                                    <td className="border-b p-2">{user.role_id.nombre}</td>
+                                                    <td className="border-b p-2">{user.role.nombre}</td>
                                                     <td className="border-b p-2">
                                                         {user.estado ?
                                                             <span className="rounded-full p-1 text-background-light bg-earthy-green">activo</span> :

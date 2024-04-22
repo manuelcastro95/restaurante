@@ -9,6 +9,7 @@ import Layout from '../Layout';
 
 const Productos = () => {
   const [productos, setProductos] = useState([])
+  const [categorias, setCategorias] = useState([])
   const [producto, setProducto] = useState([])
   const [titulo, setTitulo] = useState('Agregar Producto')
   const [textButton, setTextButton] = useState('Agregar')
@@ -28,6 +29,14 @@ const Productos = () => {
     setProductos(data)
   }
 
+  const cargar_categorias = async () => {
+    let data = await fetch(`http://localhost:3005/v1/restaurante/categorias`)
+      .then(data => data.json())
+      .then(res => res)
+
+    setCategorias(data)
+  }
+
   const enviarDatos = async (e) => {
     e.preventDefault();
     let url_post = ''
@@ -36,14 +45,14 @@ const Productos = () => {
     if (accion == 'crear') {
       url_post = `${url_base}/store`
     } else if (accion == 'actualizar') {
-      url_post = `${url_base}/editar/${producto.id}`
+      url_post = `${url_base}/editar/${producto._id}`
       method = 'PUT'
     }
 
     let datos = {
       nombre: nombre,
       precio: precio,
-      categoria: categoria
+      categoriaId: categoria
     }
 
     fetch(url_post, {
@@ -115,16 +124,18 @@ const Productos = () => {
 
   useEffect(() => {
     cargar_productos();
+    cargar_categorias();
   }, [])
 
   return (
     <>
       <Layout menu_active="Productos">
-        <div className="max-w-7xl rounded overflow-hidden shadow-lg mx-10 my-7">
-          <h1 className="font-bold text-xl mb-2 my-3 ml-5">Productos</h1>
+
+        <div className="p-4 w-full bg-background-light">
+          <h1 className="text-xl font-bold text-dark-charcoal mb-4">Gestion Productos</h1>
 
           <div className="flex justify-end px-9">
-            <ButtonLink color='slate' ruta="/administrador">
+            <ButtonLink color="light-gray" ruta="/dashboard">
               <i className="mr-2 fa-solid fa-angles-left"></i>
               Regresar
             </ButtonLink>
@@ -134,31 +145,31 @@ const Productos = () => {
             </ButtonLink>
           </div>
 
-          <div className="container my-9 grid grid-cols-3 gap-auto">
-            <div className="overflow-x-auto col-span-2 mx-6">
+
+          <div className="my-9 grid grid-cols-3 gap-3">
+            <div className="overflow-x-auto col-span-2 shadow-md rounded-lg p-4 shadow-steel-blue overflow-hidden bg-background-light">
               <div className="inline-block">
-                {/* <div className="overflow-x-auto"> */}
-                <div className="relative overflow-y-auto h-[300px]">
-                  <table className="min-w-full bg-white shadow-md rounded-xl">
-                    <thead>
-                      <tr className="bg-blue-gray-100 text-gray-700">
-                        <th className="py-3 px-4 text-left">nombre</th>
-                        <th className="py-3 px-4 text-left">precio</th>
-                        <th className="py-3 px-4 text-left">categoria</th>
-                        <th className="py-3 px-4 text-left">acciones</th>
+                <div className="w-full relative overflow-y-auto h-[500px]">
+                  <table className="w-full ">
+                    <thead className="text-background-light bg-steel-blue rounded-xl">
+                      <tr >
+                        <th className="py-2 border-b px-5 text-left font-bold rounded-tl-xl">nombre</th>
+                        <th className="py-2 border-b px-5 text-left font-bold">precio</th>
+                        <th className="py-2 border-b px-5 text-left font-bold">categoria</th>
+                        <th className="py-2 border-b px-5 text-left font-bold rounded-tr-xl">acciones</th>
                       </tr>
                     </thead>
-                    <tbody className="text-blue-gray-900">
+                    <tbody className="text-dark-charcoal">
                       {productos.map((producto, i) =>
                         <tr key={i} className="border-b border-blue-gray-200">
-                          <td className="py-3 px-4">{producto.nombre}  </td>
-                          <td className="py-3 px-4">${producto.precio}</td>
-                          <td className="py-3 px-4">{producto.categoria}</td>
-                          <td className="py-3 px-4">
+                          <td className="border-b p-2">{producto.nombre}  </td>
+                          <td className="border-b p-2">${producto.precio}</td>
+                          <td className="border-b p-2">{producto.categoria.nombre}</td>
+                          <td className="border-b p-2">
                             <Button
                               title="editar producto"
                               type="button"
-                              onClick={() => update_producto(producto.id)}
+                              onClick={() => update_producto(producto._id)}
                               color="blue"
                             >
                               <i className="fa-regular fa-pen-to-square"></i>
@@ -166,7 +177,7 @@ const Productos = () => {
                             <Button
                               type="button"
                               color="red"
-                              onClick={() => changeStatus(producto.id, producto.estado)}
+                              onClick={() => changeStatus(producto._id, producto.estado)}
                               title="eliminar producto"
                             >
 
@@ -180,9 +191,8 @@ const Productos = () => {
                 </div>
               </div>
             </div>
-
-            <div className=" mr-5">
-              <form onSubmit={enviarDatos} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div className="shadow-md rounded-lg shadow-steel-blue overflow-hidden bg-background-light p-2">
+              <form onSubmit={enviarDatos} className="rounded px-8 pt-6 pb-8 mb-4">
                 <div className="mb-3">
                   <h2 className="block text-xl font-si leading-6 text-gray-900">{titulo}</h2>
                 </div>
@@ -208,13 +218,18 @@ const Productos = () => {
                 </div>
                 <div className="mb-4">
                   <Label> Categoria  </Label>
-                  <Input
-                    value={categoria}
-                    type="text"
+
+                  <select
+                    className="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     id="categoria"
-                    name="categoria"
+                    value={categoria}
                     onChange={(e) => setCategoria(e.target.value)}
-                  />
+                  >
+                    <option value="0">Seleccione una categoria </option>
+                    {categorias.map(categoria =>
+                      <option key={categoria._id} value={categoria._id}>{categoria.nombre}</option>
+                    )}
+                  </select>
                 </div>
                 <div className="flex items-center justify-between">
                   <Button type="submit" color="blue" properties="w-full" >
@@ -239,6 +254,10 @@ const Productos = () => {
           </div>
 
         </div>
+
+
+
+
       </Layout>
     </>
   )

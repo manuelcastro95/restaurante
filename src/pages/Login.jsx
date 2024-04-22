@@ -1,5 +1,6 @@
 import logo from '../assets/img/logo.png'
-import fondo_login from '../assets/img/fondo_login.png'
+import fondo_login from '../assets/img/fondo_login.webp'
+
 import Input from '../components/Input'
 import Label from '../components/Label'
 import Button from '../components/Button'
@@ -36,8 +37,8 @@ function Login({ callback }) {
       .then(res => {
 
         login(res)
-        const redirectRoute = res.rol === "administrador" ? "/dashboard" :
-          res.rol === "mesero" ? "/mesero" : "/cocina";
+        const redirectRoute = res.role.nombre === "administrador" ? "/dashboard" :
+          res.role.nombre === "mesero" ? "/mesero" : "/cocina";
         goTo(redirectRoute)
 
         Swal.fire({
@@ -57,7 +58,7 @@ function Login({ callback }) {
     <img
       src={fondo_login}
       alt="fondo login"
-      className='object-cover h-full w-full' // Asegúrate de que la imagen cubra el espacio disponible
+      className=' h-full w-full' 
     />
   </div>
 

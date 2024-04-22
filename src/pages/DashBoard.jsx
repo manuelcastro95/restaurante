@@ -91,7 +91,7 @@ const DashBoard = () => {
                                             <tr key={user._id}>
                                                 <td className="border-b p-2">{user.nombre}</td>
                                                 <td className="border-b p-2">{user.email}</td>
-                                                <td className="border-b p-2">{user.role_id.nombre}</td>
+                                                <td className="border-b p-2">{user.role.nombre}</td>
                                                 <td className="border-b p-2">{user.telefono}</td>
                                                 <td className="border-b p-2">{formatear_fecha(user.fechaRegistro)}</td>
                                                 <td className="border-b p-2 text-center">
