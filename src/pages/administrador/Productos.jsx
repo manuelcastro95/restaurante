@@ -21,7 +21,8 @@ const Productos = () => {
   const [estado, setEstado] = useState("text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900")
   const [categoria, setCategoria] = useState("")
 
-  const url_base = 'http://localhost:3005/v1/restaurante/productos/';
+  // const url_base = 'http://localhost:3005/v1/restaurante/productos/';
+  const url_base = 'https://restaurante-endpoints.vercel.app/v1/restaurante/productos/';
 
   const cargar_productos = async () => {
     let data = await fetch(url_base)
@@ -32,7 +33,8 @@ const Productos = () => {
   }
 
   const cargar_categorias = async () => {
-    let data = await fetch(`http://localhost:3005/v1/restaurante/categorias`)
+    // let data = await fetch(`http://localhost:3005/v1/restaurante/categorias`)
+    let data = await fetch(`https://restaurante-endpoints.vercel.app/v1/restaurante/categorias`)
       .then(data => data.json())
       .then(res => res)
 

@@ -7,7 +7,8 @@ const ModalCobrar = ({ isOpen, toggleModal, options, pedidoSeleccionado }) => {
 
     const [optionSeleccionado, setOptionSeleccionado] = useState(null);
     const [total, setTotal] = useState('')
-    const url_base = 'http://localhost:3005/v1/restaurante/';
+    // const url_base = 'http://localhost:3005/v1/restaurante/';
+    const url_base = 'https://restaurante-endpoints.vercel.app/v1/restaurante/';
 
     const obtenerMetodoSeleccionado = (optionSeleccionado) => {
         setOptionSeleccionado(optionSeleccionado);

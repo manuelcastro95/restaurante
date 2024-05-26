@@ -10,7 +10,8 @@ function CocinaPage({ user }) {
     // }
 
     const [pedidos, setPedidos] = useState([])
-    const url_base = 'http://localhost:3005/v1/restaurante/pedidos/';
+    // const url_base = 'http://localhost:3005/v1/restaurante/pedidos/';
+    const url_base = 'https://restaurante-endpoints.vercel.app/v1/restaurante/pedidos/';
 
 
     const cargar_pedidos = async () => {

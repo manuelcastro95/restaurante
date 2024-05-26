@@ -7,7 +7,8 @@ import ButtonLink from '../components/ButtonLink';
 const Actividades = () => {
     const { userAuth, logout } = useAuth();
     const [actividades, setActividades] = useState([]);
-    const url = 'http://localhost:3005/v1/restaurante/actividades';
+    // const url = 'http://localhost:3005/v1/restaurante/actividades';
+    const url_base = 'https://restaurante-endpoints.vercel.app/v1/restaurante/actividades/';
 
     const cargar_actividades = async () => {
         const data = await fetch(url)

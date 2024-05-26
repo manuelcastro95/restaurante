@@ -12,7 +12,8 @@ import { useAuth } from '../providers/AuthContext';
 function Login({ callback }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const url = 'http://localhost:3005/v1/restaurante/auth/login';
+  // const url = 'http://localhost:3005/v1/restaurante/auth/login';
+  const url = 'https://restaurante-endpoints.vercel.app/v1/restaurante/auth/login';
   const goTo = useNavigate();
   const { login } = useAuth();
 

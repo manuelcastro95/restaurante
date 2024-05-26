@@ -37,7 +37,8 @@ const MeseroPage = ({ user }) => {
     ];
 
     const cargar_productos = async () => {
-        let productos = await fetch(`http://localhost:3005/v1/restaurante/productos/`)
+        // let productos = await fetch(`http://localhost:3005/v1/restaurante/productos/`)
+        let productos = await fetch(`https://restaurante-endpoints.vercel.app/v1/restaurante/productos/`)
             .then(data => data.json())
             .then(res => res)
 
@@ -70,7 +71,8 @@ const MeseroPage = ({ user }) => {
 
 
     const cobrarMesa = async (id) => {
-        let pedido = await fetch(`http://localhost:3005/v1/restaurante/pedidos/${id}`)
+        // let pedido = await fetch(`http://localhost:3005/v1/restaurante/pedidos/${id}`)
+        let pedido = await fetch(`https://restaurante-endpoints.vercel.app/v1/restaurante/pedidos/${id}`)
             .then(data => data.json())
             .then(res => res)
 

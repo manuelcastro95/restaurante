@@ -7,7 +7,8 @@ const ModalTomarPedido = ({ isOpen, toggleModal, options, productos, mesaSelecci
     const [productosSeleccionados, setProductosSeleccionados] = useState([]);
     const [total, setTotal] = useState(0);
 
-    const url_base = 'http://localhost:3005/v1/restaurante/pedidos/';
+    // const url_base = 'http://localhost:3005/v1/restaurante/pedidos/';
+    const url_base = 'https://restaurante-endpoints.vercel.app/v1/restaurante/pedidos/';
 
 
 

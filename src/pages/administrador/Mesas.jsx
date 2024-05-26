@@ -19,7 +19,8 @@ const Mesas = () => {
     const [estado, setEstado] = useState('disponible');
 
     const [accion, setAccion] = useState('crear');
-    const url = 'http://localhost:3005/v1/restaurante/mesas';
+    // const url = 'http://localhost:3005/v1/restaurante/mesas';
+    const url = 'https://restaurante-endpoints.vercel.app/v1/restaurante/mesas';
 
     const cargar_mesas = async () => {
         const data = await fetch(url)

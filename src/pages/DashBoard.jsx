@@ -14,7 +14,8 @@ const DashBoard = () => {
     const [ventas, setVentas] = useState([]);
     const [actividades, setActividades] = useState([]);
     const [total, setTotal] = useState(0);
-    const url_base = 'http://localhost:3005/v1/restaurante/';
+    // const url_base = 'http://localhost:3005/v1/restaurante/';
+    const url_base = 'https://restaurante-endpoints.vercel.app/v1/restaurante/';
 
     const cargar_users = async () => {
         const data = await fetch(`${url_base}users`)

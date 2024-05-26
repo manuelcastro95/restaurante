@@ -25,7 +25,8 @@ const Usuarios = () => {
     const [accion, setAccion] = useState('crear')
     const [estado, setEstado] = useState('text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900')
 
-    const url = 'http://localhost:3005/v1/restaurante/users';
+    // const url = 'http://localhost:3005/v1/restaurante/users';
+    const url = 'https://restaurante-endpoints.vercel.app/v1/restaurante/users';
 
     const cargar_users = async () => {
         const data = await fetch(url)
@@ -35,7 +36,8 @@ const Usuarios = () => {
     }
 
     const cargar_roles = async () => {
-        const data = await fetch('http://localhost:3005/v1/restaurante/roles')
+        // const data = await fetch('http://localhost:3005/v1/restaurante/roles')
+        const data = await fetch('https://restaurante-endpoints.vercel.app/v1/restaurante/roles')
             .then(res => res.json())
             .then(data => data)
         setRoles(data)

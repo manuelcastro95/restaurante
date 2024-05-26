@@ -14,7 +14,8 @@ const AdminPage = () => {
     if (user.rol != "administrador" || !user.rol) {
         return <Navigate to="/" />
     }
-    const url = 'http://localhost:3005/v1/restaurante/ventas';
+    // const url = 'http://localhost:3005/v1/restaurante/ventas';
+    const url = 'https://restaurante-endpoints.vercel.app/v1/restaurante/ventas';
     const [ventas, setVentas] = useState([]);
 
 
