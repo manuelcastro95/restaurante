@@ -26,7 +26,7 @@ const AdminPage = () => {
     }
 
     useEffect(() => {
-        cargar_ventas()
+        cargar_ventas();
     }, [])
     return (
         <>

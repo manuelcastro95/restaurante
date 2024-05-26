@@ -12,6 +12,8 @@ import Roles from './pages/administrador/Roles';
 import Categorias from './pages/administrador/Categorias';
 import DashBoard from './pages/DashBoard';
 import NoFound from './pages/NoFound';
+import Actividades from './pages/Actividades';
+import Mesas from './pages/administrador/Mesas';
 
 
 export default function App() {
@@ -21,12 +23,14 @@ export default function App() {
       <Routes>
         <Route index path="/" element={<Login />} />
         <Route>
+          <Route path="/actividades-recientes" element={<Actividades />} />
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="administrador" element={<AdminPage />} />
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="roles" element={<Roles />} />
           <Route path="productos" element={<Productos />} />
           <Route path="categorias" element={<Categorias />} />
+          <Route path="mesas" element={<Mesas />} />
           <Route path="cocina" element={<CocinaPage />} />
           <Route path="mesero" element={<MeseroPage />} />
           <Route path="*" element={<NoFound />} />

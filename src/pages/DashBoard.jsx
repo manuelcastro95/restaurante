@@ -1,42 +1,50 @@
 import { useEffect, useState } from "react";
-import Layout from "./Layout"
+import Layout from "./Layout";
 import Label from "../components/Label";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import { useAuth } from "../providers/AuthContext";
 
 const DashBoard = () => {
+    const { userAuth, logout } = useAuth();
 
     const [users, setUsers] = useState([]);
     const [productos, setProductos] = useState([]);
     const [ventas, setVentas] = useState([]);
-    const [total, setTotal] = useState(0)
+    const [actividades, setActividades] = useState([]);
+    const [total, setTotal] = useState(0);
     const url_base = 'http://localhost:3005/v1/restaurante/';
-
 
     const cargar_users = async () => {
         const data = await fetch(`${url_base}users`)
             .then(res => res.json())
-            .then(data => data)
-        setUsers(data)
+            .then(data => data);
+        setUsers(data.slice(0, 3));
     }
 
     const cargar_productos = async () => {
         let data = await fetch(`${url_base}productos/`)
             .then(data => data.json())
-            .then(res => res)
-
-        setProductos(data)
+            .then(res => res);
+        setProductos(data);
     }
 
     const cargar_ventas = async () => {
         let data = await fetch(`${url_base}ventas`)
             .then(data => data.json())
-            .then(res => res)
-        setVentas(data)
+            .then(res => res);
+        setVentas(data);
         let subtotal = 0;
-        data.forEach(venta => subtotal += venta.total)
-        setTotal(subtotal)
+        data.forEach(venta => subtotal += venta.total);
+        setTotal(subtotal);
+    }
+
+    const cargar_actividades = async () => {
+        let data = await fetch(`${url_base}actividades`)
+            .then(data => data.json())
+            .then(res => res);
+        setActividades(data.slice(0, 10));
     }
 
     const formatear_fecha = (fecha) => {
@@ -50,6 +58,7 @@ const DashBoard = () => {
         cargar_users();
         cargar_productos();
         cargar_ventas();
+        cargar_actividades();
     }, [])
 
     return (
@@ -72,9 +81,9 @@ const DashBoard = () => {
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4">
-                        <div className="col-span-3 border my-6 shadow-lg rounded-lg p-4 shadow-sky-blue overflow-hidden bg-background-light">
-                            <div className="relative overflow-y-auto h-[300px]">
+                    <div className="grid grid-cols-3 gap-4 mt-6">
+                        <div className="col-span-3 border my-1 shadow-lg rounded-lg p-4 shadow-sky-blue overflow-hidden bg-background-light">
+                            <div className="relative overflow-y-auto h-[170px]">
                                 <table className="table w-full">
                                     <thead className="text-background-light bg-bright-blue rounded-xl">
                                         <tr>
@@ -107,11 +116,38 @@ const DashBoard = () => {
                             </div>
                         </div>
                     </div>
-                </div>
 
+                    <div className="grid grid-cols-3 gap-4">
+                        <div className="col-span-3 border my-3 shadow-lg rounded-lg p-4 shadow-sky-blue overflow-hidden bg-background-light">
+                            <h2 className="text-lg font-bold text-dark-charcoal mb-4">Actividades Recientes</h2>
+                            <div className="relative overflow-y-auto h-[300px]">
+                                <table className="table w-full">
+                                    <thead className="text-background-light bg-bright-blue rounded-xl">
+                                        <tr>
+                                            <th className="py-2 border-b px-5 text-left font-bold rounded-tl-xl">Usuario</th>
+                                            <th className="py-2 border-b px-5 text-left font-bold">Acción</th>
+                                            <th className="py-2 border-b px-5 text-left font-bold">Detalles</th>
+                                            <th className="py-2 border-b px-5 text-left font-bold rounded-tr-xl">Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="text-dark-charcoal">
+                                        {actividades.map((actividad, i) => (
+                                            <tr key={i}>
+                                                <td className="border-b p-2">{actividad.userId.nombre}</td>
+                                                <td className="border-b p-2">{actividad.action}</td>
+                                                <td className="border-b p-2">{actividad.details}</td>
+                                                <td className="border-b p-2">{new Date(actividad.createdAt).toLocaleString()}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </Layout>
         </>
-    )
+    );
 }
 
-export default DashBoard
+export default DashBoard;

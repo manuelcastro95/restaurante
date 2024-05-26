@@ -1,4 +1,3 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Input from "../../components/Input";
 import Label from '../../components/Label';
@@ -8,41 +7,37 @@ import ButtonLink from "../../components/ButtonLink";
 import Layout from "../Layout";
 import { useAuth } from "../../providers/AuthContext";
 
-const Categorias = () => {
-    const { userAuth, logout } = useAuth();
-    const [categorias, setCategorias] = useState([]);
-    const [categoria, setCategoria] = useState({});
-    const [titulo, setTitulo] = useState('Agregar Categoría');
+const Mesas = () => {
+    const { userAuth,logout } = useAuth();
+    
+    const [mesas, setMesas] = useState([]);
+    const [mesa, setMesa] = useState({});
+    const [titulo, setTitulo] = useState('Agregar Mesa');
     const [textButton, setTextButton] = useState('Agregar');
 
     const [nombre, setNombre] = useState('');
-    const [descripcion, setDescripcion] = useState('');
-    
+    const [estado, setEstado] = useState('disponible');
+
     const [accion, setAccion] = useState('crear');
-    const [estado, setEstado] = useState('text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900');
+    const url = 'http://localhost:3005/v1/restaurante/mesas';
 
-    const url = 'http://localhost:3005/v1/restaurante/categorias';
-
-    const cargar_categorias = async () => {
+    const cargar_mesas = async () => {
         const data = await fetch(url)
             .then(res => res.json())
             .then(data => data);
-        setCategorias(data);
-    }
+        setMesas(data);
+    };
 
-    const update_categoria = async idCategoria => {
-        const data = await fetch(`${url}/${idCategoria}`)
-            .then(res => res.json())
-            .then(data => data);
-
-        setCategoria(data);
-        setTitulo('Actualizar información Categoría');
+    const update_mesa = async Mesa => {
+        
+        setMesa(Mesa);
+        setTitulo('Actualizar información de la Mesa');
         setTextButton('Actualizar');
-        setNombre(data.nombre);
-        setDescripcion(data.descripcion);
+        setNombre(Mesa.nombre);
+        setEstado(Mesa.estado);
 
         setAccion('actualizar');
-    }
+    };
 
     const enviarDatos = async (e) => {
         e.preventDefault();
@@ -52,13 +47,13 @@ const Categorias = () => {
         if (accion === 'crear') {
             url_post = `${url}/store`;
         } else if (accion === 'actualizar') {
-            url_post = `${url}/editar/${categoria._id}`;
+            url_post = `${url}/editar/${mesa._id}`;
             method = 'PUT';
         }
 
         let datos = {
             nombre: nombre,
-            descripcion: descripcion,
+            estado: estado,
             idUserAuth: userAuth._id
         };
 
@@ -72,7 +67,7 @@ const Categorias = () => {
             .then((res) => res.json())
             .catch((error) => console.error('Error:', error))
             .then((response) => {
-                cargar_categorias();
+                cargar_mesas();
                 Swal.fire({
                     title: '',
                     text: `${response.mensaje}`,
@@ -81,47 +76,25 @@ const Categorias = () => {
                 });
                 limpiar_campos();
             });
-    }
-
-    const changeStatus = async (id, status) => {
-        let estado = status === 1 ? 0 : 1;
-        fetch(`${url}/update-status/${id}`, {
-            method: 'PUT',
-            body: JSON.stringify({ estado: estado, idUserAuth: userAuth._id }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then((res) => res.json())
-            .catch((error) => console.error('Error:', error))
-            .then((response) => {
-                cargar_categorias();
-                Swal.fire({
-                    title: '',
-                    text: `${response.mensaje}`,
-                    icon: 'success',
-                    confirmButtonText: 'Cerrar'
-                });
-            });
-    }
+    };
 
     const limpiar_campos = () => {
-        setTitulo('Agregar Categoría');
+        setTitulo('Agregar Mesa');
         setTextButton('Agregar');
         setNombre('');
-        setDescripcion('');
+        setEstado('disponible');
         setAccion('crear');
-    }
+    };
 
     useEffect(() => {
-        cargar_categorias();
+        cargar_mesas();
     }, []);
 
     return (
         <>
-            <Layout menu_active="Categorias">
+            <Layout menu_active="Mesas">
                 <div className="p-4 w-full bg-background-light">
-                    <h1 className="text-xl font-bold text-dark-charcoal mb-4">Gestión de Categorías</h1>
+                    <h1 className="text-xl font-bold text-dark-charcoal mb-4">Gestión de Mesas</h1>
 
                     <div className="flex justify-end px-9">
                         <ButtonLink color="light-gray" ruta="/dashboard">
@@ -142,38 +115,28 @@ const Categorias = () => {
                                         <thead className="text-background-light bg-bright-blue rounded-xl">
                                             <tr>
                                                 <th className="py-2 border-b px-5 text-left font-bold rounded-tl-xl">Nombre</th>
-                                                <th className="py-2 border-b px-5 text-left font-bold">Descripción</th>
                                                 <th className="py-2 border-b px-5 text-left font-bold">Estado</th>
                                                 <th className="py-2 border-b px-5 text-left font-bold rounded-tr-xl">Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody className="text-dark-charcoal">
-                                            {categorias.map((categoria, i) =>
+                                            {mesas.map((mesa, i) =>
                                                 <tr key={i}>
-                                                    <td className="border-b p-2">{categoria.nombre}</td>
-                                                    <td className="border-b p-2">{categoria.descripcion}</td>
+                                                    <td className="border-b p-2">{mesa.nombre}</td>
                                                     <td className="border-b p-2">
-                                                        {categoria.estado ?
-                                                            <span className="rounded-full p-1 text-background-light bg-earthy-green">activo</span> :
-                                                            <span className="rounded-full p-1 text-background-light bg-dusty-red">inactivo</span>
+                                                        {mesa.estado === 'ocupada' ?
+                                                            <span className="rounded-full p-1 text-background-light bg-earthy-green">Ocupada</span> :
+                                                            <span className="rounded-full p-1 text-background-light bg-dusty-red">Disponible</span>
                                                         }
                                                     </td>
                                                     <td className="border-b p-2">
                                                         <Button
-                                                            title="editar categoría"
+                                                            title="editar mesa"
                                                             type="button"
-                                                            onClick={() => update_categoria(categoria._id)}
+                                                            onClick={() => update_mesa(mesa)}
                                                             color="blue"
                                                         >
                                                             <i className="fa-solid fa-pen-to-square"></i>
-                                                        </Button>
-                                                        <Button
-                                                            type="button"
-                                                            onClick={() => changeStatus(categoria._id, categoria.estado)}
-                                                            title="cambiar estado"
-                                                            color="red"
-                                                        >
-                                                            <i className="fa-solid fa-trash-can"></i>
                                                         </Button>
                                                     </td>
                                                 </tr>
@@ -199,15 +162,12 @@ const Categorias = () => {
                                     />
                                 </div>
                                 <div className="mb-6">
-                                    <Label> Descripción </Label>
-                                    <textarea 
-                                        name=""
-                                        rows="3"
-                                        value={descripcion}
+                                    <Label> Estado </Label>
+                                    <Input
+                                        value={estado}
                                         type="text"
-                                        id="descripcion"
-                                        onChange={(e) => setDescripcion(e.target.value)}
-                                        className="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        id="estado"
+                                        onChange={(e) => setEstado(e.target.value)}
                                     />
                                 </div>
                                 
@@ -241,4 +201,4 @@ const Categorias = () => {
     );
 }
 
-export default Categorias;
+export default Mesas;

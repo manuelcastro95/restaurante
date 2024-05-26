@@ -6,8 +6,11 @@ import Button from '../../components/Button'
 import Swal from 'sweetalert2'
 import ButtonLink from "../../components/ButtonLink";
 import Layout from "../Layout";
+import { useAuth } from "../../providers/AuthContext";
 
 const Usuarios = () => {
+    const { userAuth, logout } = useAuth();
+
     const [users, setUsers] = useState([])
     const [roles, setRoles] = useState([])
     const [user, setUser] = useState([])
@@ -72,9 +75,10 @@ const Usuarios = () => {
             apellido: apellidos,
             roleId: rol,
             email: email,
-            password: contraseña
+            password: contraseña,
+            idUserAuth: userAuth._id
         }
-
+        
         fetch(url_post, {
             'method': method,
             'body': JSON.stringify(datos),
@@ -101,7 +105,7 @@ const Usuarios = () => {
         let estado = status == 1 ? 0 : 1;
         fetch(`${url}/update-status/${id}`, {
             'method': 'PUT',
-            'body': JSON.stringify({ estado: estado }),
+            'body': JSON.stringify({ estado: estado,idUserAuth: userAuth._id }),
             'headers': {
                 'Content-Type': 'application/json'
             }
@@ -132,7 +136,7 @@ const Usuarios = () => {
 
     useEffect(() => {
         cargar_users()
-        cargar_roles()
+        cargar_roles();
     }, [])
 
     return (
@@ -146,9 +150,9 @@ const Usuarios = () => {
                             <i className="mr-2 fa-solid fa-angles-left"></i>
                             Regresar
                         </ButtonLink>
-                        <ButtonLink color="red" ruta="/">
+                        <ButtonLink color="warning-orange" ruta="/" onClick={logout}>
                             Salir
-                            <i className=" ml-2 fa-solid fa-right-from-bracket"></i>
+                            <i className="ml-2 fa-solid fa-right-from-bracket"></i>
                         </ButtonLink>
                     </div>
 

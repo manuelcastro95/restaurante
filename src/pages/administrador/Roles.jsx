@@ -6,8 +6,10 @@ import Button from '../../components/Button'
 import Swal from 'sweetalert2'
 import ButtonLink from "../../components/ButtonLink";
 import Layout from "../Layout";
+import { useAuth } from "../../providers/AuthContext";
 
 const Roles = () => {
+    const { userAuth, logout } = useAuth();
     const [roles, setRoles] = useState([])
     const [role, setRole] = useState([])
     const [titulo, setTitulo] = useState('Agregar Rol')
@@ -56,7 +58,8 @@ const Roles = () => {
 
         let datos = {
             nombre: nombre,
-            descripcion: descripcion
+            descripcion: descripcion,
+            idUserAuth: userAuth._id
         }
 
         fetch(url_post, {
@@ -85,7 +88,7 @@ const Roles = () => {
         let estado = status == 1 ? 0 : 1;
         fetch(`${url}/update-status/${id}`, {
             'method': 'PUT',
-            'body': JSON.stringify({ estado: estado }),
+            'body': JSON.stringify({ estado: estado,idUserAuth: userAuth._id }),
             'headers': {
                 'Content-Type': 'application/json'
             }
@@ -126,9 +129,9 @@ const Roles = () => {
                             <i className="mr-2 fa-solid fa-angles-left"></i>
                             Regresar
                         </ButtonLink>
-                        <ButtonLink color="red" ruta="/">
+                        <ButtonLink color="warning-orange" ruta="/" onClick={logout}>
                             Salir
-                            <i className=" ml-2 fa-solid fa-right-from-bracket"></i>
+                            <i className="ml-2 fa-solid fa-right-from-bracket"></i>
                         </ButtonLink>
                     </div>
 

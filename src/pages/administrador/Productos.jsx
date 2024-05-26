@@ -6,8 +6,10 @@ import Button from '../../components/Button';
 import Swal from 'sweetalert2'
 import ButtonLink from '../../components/ButtonLink';
 import Layout from '../Layout';
-
+import { useAuth } from "../../providers/AuthContext";
 const Productos = () => {
+
+  const { userAuth, logout } = useAuth();
   const [productos, setProductos] = useState([])
   const [categorias, setCategorias] = useState([])
   const [producto, setProducto] = useState([])
@@ -52,7 +54,8 @@ const Productos = () => {
     let datos = {
       nombre: nombre,
       precio: precio,
-      categoriaId: categoria
+      categoriaId: categoria,
+      idUserAuth: userAuth._id
     }
 
     fetch(url_post, {
@@ -135,15 +138,15 @@ const Productos = () => {
           <h1 className="text-xl font-bold text-dark-charcoal mb-4">Gestion Productos</h1>
 
           <div className="flex justify-end px-9">
-            <ButtonLink color="light-gray" ruta="/dashboard">
-              <i className="mr-2 fa-solid fa-angles-left"></i>
-              Regresar
-            </ButtonLink>
-            <ButtonLink color="red" ruta="/">
-              Salir
-              <i className=" ml-2 fa-solid fa-right-from-bracket"></i>
-            </ButtonLink>
-          </div>
+                <ButtonLink color="light-gray" ruta="/dashboard">
+                    <i className="mr-2 fa-solid fa-angles-left"></i>
+                    Regresar
+                </ButtonLink>
+                <ButtonLink color="warning-orange" ruta="/" onClick={logout}>
+                    Salir
+                    <i className="ml-2 fa-solid fa-right-from-bracket"></i>
+                </ButtonLink>
+            </div>
 
 
           <div className="my-9 grid grid-cols-3 gap-3">

@@ -10,8 +10,9 @@ const Layout = ({ children, menu_active }) => {
     { icon: "fa-solid fa-users-gear", label: "Roles", ruta: "/roles" },
     { icon: "fa-solid fa-boxes-stacked", label: "Productos", ruta: "/productos" },
     { icon: "fa-solid fa-layer-group", label: "Categorias", ruta: "/categorias" },
+    { icon: "fa-solid fa-table", label: "Mesas", ruta: "/mesas" },
     
-    { icon: "fa-solid fa-clock-rotate-left", label: "Actividad reciente", ruta: "" }
+    { icon: "fa-solid fa-clock-rotate-left", label: "Actividad reciente", ruta: "/actividades-recientes" }
   ];
 
   return (
